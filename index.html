@@ -401,779 +401,717 @@
 
              <!-- ADICIONE ESTE CÓDIGO NO FINAL DO SEU HTML, ANTES DO </body> -->
 
-<!-- CSS do Modal PIX -->
-<style>
-    .modal-pix-pushin {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.92);
-        z-index: 999999;
-        align-items: center;
-        justify-content: center;
-        animation: fadeInModal 0.3s ease;
-        overflow-y: auto;
-        padding: 10px;
-    }
-
-    .modal-pix-pushin.active {
-        display: flex;
-    }
-
-    .modal-pix-content-pushin {
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        max-width: 380px;
-        width: 95%;
-        max-height: 95vh;
-        overflow-y: auto;
-        text-align: center;
-        position: relative;
-        animation: slideUpModal 0.4s ease;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .close-modal-pix-pushin {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #ff4757;
-        color: white;
-        border: none;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: bold;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-        z-index: 10;
-    }
-
-    .close-modal-pix-pushin:hover {
-        background: #ff3838;
-        transform: rotate(90deg);
-    }
-
-    .modal-pix-pushin h2 {
-        color: #2c3e50;
-        font-size: 20px;
-        margin-bottom: 8px;
-        font-weight: bold;
-    }
-
-    .valor-pix-pushin {
-        color: #ffa500;
-        font-size: 32px;
-        font-weight: bold;
-        margin: 10px 0;
-    }
-
-    .status-pix-pushin {
-        display: inline-block;
-        padding: 6px 16px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
-        margin-bottom: 15px;
-    }
-
-    .status-pix-pushin.pendente {
-        background: #fff3cd;
-        color: #856404;
-    }
-
-    .status-pix-pushin.pago {
-        background: #d4edda;
-        color: #155724;
-    }
-
-    .qr-code-box-pushin {
-        margin: 15px 0;
-        padding: 15px;
-        background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
-        border-radius: 12px;
-    }
-
-    .qr-code-box-pushin img {
-        width: 200px;
-        height: 200px;
-        background: white;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .instrucoes-pix-pushin {
-        background: #f8f9fa;
-        padding: 12px;
-        border-radius: 8px;
-        margin: 12px 0;
-        text-align: left;
-    }
-
-    .instrucoes-pix-pushin h3 {
-        color: #495057;
-        font-size: 14px;
-        margin-bottom: 8px;
-        font-weight: bold;
-    }
-
-    .instrucoes-pix-pushin ol {
-        margin: 0;
-        padding-left: 18px;
-        color: #6c757d;
-        font-size: 12px;
-        line-height: 1.6;
-    }
-
-    .codigo-pix-container-pushin {
-        margin: 12px 0;
-    }
-
-    .codigo-pix-label-pushin {
-        color: #495057;
-        font-size: 12px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: block;
-    }
-
-    .codigo-pix-box-pushin {
-        background: #f8f9fa;
-        border: 2px dashed #dee2e6;
-        padding: 10px;
-        border-radius: 8px;
-        word-break: break-all;
-        font-family: 'Courier New', monospace;
-        font-size: 10px;
-        color: #495057;
-        max-height: 80px;
-        overflow-y: auto;
-        text-align: left;
-        line-height: 1.4;
-    }
-
-    .btn-copiar-pix-pushin {
-        background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 50px;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 10px;
-        transition: all 0.3s;
-        box-shadow: 0 6px 15px rgba(255, 165, 0, 0.4);
-    }
-
-    .btn-copiar-pix-pushin:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(255, 165, 0, 0.6);
-    }
-
-    .btn-copiar-pix-pushin:active {
-        transform: translateY(0);
-    }
-
-    .btn-verificar-pix-pushin {
-        background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 50px;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 8px;
-        transition: all 0.3s;
-        box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
-    }
-
-    .btn-verificar-pix-pushin:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(39, 174, 96, 0.6);
-    }
-
-    .btn-verificar-pix-pushin:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    .aviso-tempo-pushin {
-        color: #6c757d;
-        font-size: 11px;
-        margin-top: 12px;
-        padding: 10px;
-        background: #e9ecef;
-        border-radius: 6px;
-    }
-
-    .loading-pix-pushin {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #ffa500;
-        border-radius: 50%;
-        animation: spinLoader 1s linear infinite;
-        margin: 20px 0;
-    }
-
-    .toast-message-pushin {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-100px);
-        background: #27ae60;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 14px;
-        z-index: 1000000;
-        box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
-        opacity: 0;
-        transition: all 0.4s ease;
-    }
-
-    .toast-message-pushin.show {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-    }
-
-    .toast-message-pushin.error {
-        background: #e74c3c;
-    }
-
-    @keyframes fadeInModal {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes slideUpModal {
-        from { 
-            transform: translateY(30px); 
-            opacity: 0; 
-        }
-        to { 
-            transform: translateY(0); 
-            opacity: 1; 
-        }
-    }
-
-    @keyframes spinLoader {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    /* Responsivo Mobile */
-    @media (max-width: 480px) {
-        .modal-pix-content-pushin {
-            padding: 15px;
-            max-width: 95%;
-            border-radius: 12px;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento PIX - Dust Pay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .qr-code-box-pushin img {
-            width: 180px;
-            height: 180px;
-            padding: 8px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
         }
 
-        .valor-pix-pushin {
-            font-size: 28px;
+        /* Modal PIX */
+        .modal-pix-dustpay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 20px;
         }
 
-        .modal-pix-pushin h2 {
-            font-size: 18px;
+        .modal-pix-dustpay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .instrucoes-pix-pushin {
+        .conteudo-pix-modal-dustpay {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .conteudo-pix-modal-dustpay h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .valor-pix-dustpay {
+            font-size: 42px;
+            font-weight: bold;
+            color: #27ae60;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .status-pix-dustpay {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 15px auto;
+            display: block;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .status-pix-dustpay.pendente {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-pix-dustpay.pago {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .qr-code-box-dustpay {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .qr-code-box-dustpay img {
+            max-width: 280px;
+            width: 100%;
+            border: 3px solid #e0e0e0;
+            border-radius: 10px;
             padding: 10px;
+            background: white;
         }
 
-        .instrucoes-pix-pushin ol {
+        .instrucoes-pix-dustpay {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .instrucoes-pix-dustpay h3 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .instrucoes-pix-dustpay ol {
+            padding-left: 20px;
+            color: #555;
+        }
+
+        .instrucoes-pix-dustpay li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .codigo-pix-container-dustpay {
+            margin: 20px 0;
+        }
+
+        .codigo-pix-label-dustpay {
+            display: block;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .codigo-pix-box-dustpay {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 12px;
+            word-break: break-all;
+            font-family: monospace;
             font-size: 11px;
+            color: #495057;
+            max-height: 80px;
+            overflow-y: auto;
+            text-align: center;
         }
 
-        .codigo-pix-box-pushin {
-            font-size: 9px;
-            max-height: 70px;
+        .btn-copiar-pix-dustpay {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .btn-copiar-pix-pushin,
-        .btn-verificar-pix-pushin {
-            padding: 10px 24px;
+        .btn-copiar-pix-dustpay:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-verificar-pix-dustpay {
+            width: 100%;
+            padding: 15px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-verificar-pix-dustpay:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-verificar-pix-dustpay:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .aviso-tempo-dustpay {
+            text-align: center;
+            color: #6c757d;
             font-size: 13px;
+            margin-top: 20px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
-    }
 
-    /* Scrollbar customizada para o modal */
-    .modal-pix-content-pushin::-webkit-scrollbar {
-        width: 6px;
-    }
+        .loading-pix-dustpay {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 30px auto;
+        }
 
-    .modal-pix-content-pushin::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-    .modal-pix-content-pushin::-webkit-scrollbar-thumb {
-        background: #ffa500;
-        border-radius: 10px;
-    }
+        .toast-message-dustpay {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 18px 25px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10000;
+            display: none;
+            font-size: 15px;
+            font-weight: 500;
+            animation: slideInRight 0.3s ease;
+        }
 
-    .modal-pix-content-pushin::-webkit-scrollbar-thumb:hover {
-        background: #ff8c00;
-    }
+        .toast-message-dustpay.show {
+            display: block;
+        }
 
-    .codigo-pix-box-pushin::-webkit-scrollbar {
-        width: 4px;
-    }
+        .toast-message-dustpay.success {
+            border-left: 5px solid #27ae60;
+            color: #27ae60;
+        }
 
-    .codigo-pix-box-pushin::-webkit-scrollbar-track {
-        background: #e9ecef;
-    }
+        .toast-message-dustpay.error {
+            border-left: 5px solid #e74c3c;
+            color: #e74c3c;
+        }
 
-    .codigo-pix-box-pushin::-webkit-scrollbar-thumb {
-        background: #dee2e6;
-        border-radius: 4px;
-    }
-</style>
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
 
-<!-- Modal PIX -->
-<div class="modal-pix-pushin" id="modalPixPushin">
-    <div class="modal-pix-content-pushin">
-        <button class="close-modal-pix-pushin" onclick="fecharModalPixPushin()">×</button>
-        <div id="conteudoPixModalPushin"></div>
+        @media (max-width: 768px) {
+            .conteudo-pix-modal-dustpay {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .valor-pix-dustpay {
+                font-size: 32px;
+            }
+
+            .toast-message-dustpay {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal de Pagamento PIX -->
+    <div class="modal-pix-dustpay" id="modalPixDustpay">
+        <div class="conteudo-pix-modal-dustpay" id="conteudoPixModalDustpay">
+            <!-- Conteúdo será inserido dinamicamente -->
+        </div>
     </div>
-</div>
 
-<div class="toast-message-pushin" id="toastMessagePushin"></div>
+    <!-- Toast de Notificação -->
+    <div class="toast-message-dustpay" id="toastMessageDustpay"></div>
 
-<!-- Script de Integração PushinPay -->
-<script>
-    // ⚠️ IMPORTANTE: Substitua pelo seu TOKEN da PushinPay
-    const PUSHINPAY_TOKEN = '49866|p2SlIlHOsm3KzfcqsCD98g31b2K0B5BfneUjTzbW56afb743';
-    
-    // URLs da API
-    //const API_BASE_URL_PUSHIN = 'https://api-sandbox.pushinpay.com.br'; // Sandbox (testes)
-  const API_BASE_URL_PUSHIN = 'https://api.pushinpay.com.br/api/pix'; // Produção (descomente quando for usar)
-    
-    const API_URL_PUSHIN = `${API_BASE_URL_PUSHIN}/cashIn`;
-    
-    // URL do webhook (opcional)
-    const WEBHOOK_URL_PUSHIN = ''; // Ex: 'https://seu-site.com/webhook'
+    <script>
+        // ⚠️ CONFIGURAÇÃO OBRIGATÓRIA - DUST PAY
+        const DUSTPAY_CONFIG = {
+            publicKey: 'gregoryschulze9_25ov3ntwmdmf1wqp',
+            secretKey: '5d2yxg7i44e0jf56uohu7q8b0m1r0utjn3pfeot98k2k09gpgu2pth284bvwmrie',
+            apiUrl: 'https://app.dustpay.com.br/api/v1',
+            driveLink: 'https://drive.google.com/drive/folders/1M5toLuYb9JKXOnh3cz_zodyJwif57lLS'
+        };
 
-    // Variáveis globais
-    let pagamentoAtualPushin = null;
-    let intervaloVerificacaoPushin = null;
-    let ultimaConsultaPushin = 0;
+        // Variáveis globais
+        let pagamentoAtualDustpay = null;
+        let intervaloVerificacaoDustpay = null;
+        let ultimaConsultaDustpay = 0;
 
-    // Função para criar pagamento PIX
-    async function criarPagamentoPixPushin(valor, descricao) {
-        const modal = document.getElementById('modalPixPushin');
-        const conteudo = document.getElementById('conteudoPixModalPushin');
-        
-        // Abre o modal com loading
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Bloqueia scroll da página
-        
-        conteudo.innerHTML = `
-            <h2>Gerando PIX...</h2>
-            <div class="loading-pix-pushin"></div>
-            <p style="color: #6c757d; margin-top: 20px;">Aguarde alguns segundos</p>
-        `;
+        // Função para criar pagamento PIX
+        async function criarPagamentoPixDustpay(valor, descricao) {
+            const modal = document.getElementById('modalPixDustpay');
+            const conteudo = document.getElementById('conteudoPixModalDustpay');
+            
+            // Abre o modal com loading
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            conteudo.innerHTML = `
+                <h2>Gerando PIX...</h2>
+                <div class="loading-pix-dustpay"></div>
+                <p style="color: #6c757d; margin-top: 20px; text-align: center;">Aguarde alguns segundos</p>
+            `;
 
-        try {
-            // Converte valor para centavos
-            const valorCentavos = Math.round(valor * 100);
+            try {
+                // Gera identificador único
+                const identifier = `TXN-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                
+                // Prepara o body da requisição
+                const requestBody = {
+                    identifier: identifier,
+                    amount: valor,
+                    client: {
+                        name: 'Cliente',
+                        email: 'cliente@exemplo.com',
+                        phone: '(11) 99999-9999',
+                        document: '000.000.000-00'
+                    },
+                    products: [
+                        {
+                            id: `PROD-${Date.now()}`,
+                            name: descricao,
+                            quantity: 1,
+                            price: valor,
+                            physical: false
+                        }
+                    ],
+                    metadata: {
+                        description: descricao
+                    }
+                };
 
-            // Prepara o body da requisição
-            const body = {
-                value: valorCentavos
+                // Faz a requisição para a API
+                const response = await fetch(`${DUSTPAY_CONFIG.apiUrl}/gateway/pix/receive`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-public-key': DUSTPAY_CONFIG.publicKey,
+                        'x-secret-key': DUSTPAY_CONFIG.secretKey
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.transactionId) {
+                    pagamentoAtualDustpay = data;
+                    mostrarQRCodePixDustpay(data, descricao, valor);
+                    iniciarVerificacaoPagamentoDustpay(data.transactionId);
+                } else {
+                    throw new Error(data.message || 'Erro ao gerar PIX');
+                }
+
+            } catch (error) {
+                console.error('Erro:', error);
+                conteudo.innerHTML = `
+                    <h2 style="color: #e74c3c;">❌ Erro ao gerar PIX</h2>
+                    <p style="color: #6c757d; margin: 20px 0; text-align: center;">
+                        ${error.message || 'Não foi possível gerar o código PIX. Tente novamente.'}
+                    </p>
+                    <button class="btn-copiar-pix-dustpay" onclick="fecharModalPixDustpay()">
+                        Fechar
+                    </button>
+                `;
+                mostrarToastDustpay('Erro ao gerar PIX. Tente novamente.', 'error');
+            }
+        }
+
+        // Função para mostrar o QR Code
+        function mostrarQRCodePixDustpay(dados, descricao, valor) {
+            const conteudo = document.getElementById('conteudoPixModalDustpay');
+            const valorReais = valor.toFixed(2).replace('.', ',');
+            
+            // Usa base64 ou image URL
+            const qrCodeImage = dados.pix.base64 || dados.pix.image;
+
+            conteudo.innerHTML = `
+                <h2>Pagamento PIX</h2>
+                <p style="color: #6c757d; margin: 10px 0; font-size: 15px; text-align: center;">${descricao}</p>
+                <div class="valor-pix-dustpay">R$ ${valorReais}</div>
+                <span class="status-pix-dustpay pendente" id="statusBadgeDustpay">Aguardando Pagamento</span>
+                
+                <div class="qr-code-box-dustpay">
+                    <img src="${qrCodeImage}" alt="QR Code PIX">
+                </div>
+
+                <div class="instrucoes-pix-dustpay">
+                    <h3>📱 Como pagar:</h3>
+                    <ol>
+                        <li>Abra o app do seu banco</li>
+                        <li>Escolha pagar com PIX</li>
+                        <li>Escaneie o QR Code acima</li>
+                        <li>Confirme o pagamento</li>
+                    </ol>
+                </div>
+
+                <div class="codigo-pix-container-dustpay">
+                    <label class="codigo-pix-label-dustpay">Ou copie o código PIX:</label>
+                    <div class="codigo-pix-box-dustpay" id="codigoPixTextoDustpay">${dados.pix.code}</div>
+                </div>
+
+                <button class="btn-copiar-pix-dustpay" onclick="copiarCodigoPixDustpay()">
+                    📋 Copiar Código PIX
+                </button>
+
+                <button class="btn-verificar-pix-dustpay" id="btnVerificarManualDustpay" onclick="verificarPagamentoManualDustpay()">
+                    ✅ Já Paguei - Verificar Status
+                </button>
+
+                <div class="aviso-tempo-dustpay">
+                    ⏱️ O pagamento é confirmado automaticamente após a aprovação
+                </div>
+            `;
+        }
+
+        // Função para copiar o código PIX
+        function copiarCodigoPixDustpay() {
+            if (!pagamentoAtualDustpay) return;
+
+            navigator.clipboard.writeText(pagamentoAtualDustpay.pix.code).then(() => {
+                mostrarToastDustpay('✅ Código PIX copiado!');
+            }).catch(() => {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = pagamentoAtualDustpay.pix.code;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    mostrarToastDustpay('✅ Código PIX copiado!');
+                } catch (err) {
+                    mostrarToastDustpay('❌ Erro ao copiar', 'error');
+                }
+                
+                document.body.removeChild(textarea);
+            });
+        }
+
+        // Inicia verificação automática
+        function iniciarVerificacaoPagamentoDustpay(transactionId) {
+            intervaloVerificacaoDustpay = setInterval(async () => {
+                await consultarStatusPagamentoDustpay(transactionId);
+            }, 10000); // 10 segundos
+        }
+
+        // Consulta status do pagamento
+        async function consultarStatusPagamentoDustpay(transactionId) {
+            try {
+                const response = await fetch(`${DUSTPAY_CONFIG.apiUrl}/gateway/transactions/${transactionId}`, {
+                    method: 'GET',
+                    headers: {
+                        'x-public-key': DUSTPAY_CONFIG.publicKey,
+                        'x-secret-key': DUSTPAY_CONFIG.secretKey
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    atualizarStatusModalDustpay(data.status);
+                    
+                    if (data.status === 'COMPLETED') {
+                        pagamentoAprovadoDustpay(data);
+                    } else if (data.status === 'FAILED' || data.status === 'CANCELED') {
+                        pagamentoExpiradoDustpay(data.status);
+                    }
+                }
+
+            } catch (error) {
+                console.error('Erro ao consultar pagamento:', error);
+            }
+        }
+
+        // Atualiza status no modal
+        function atualizarStatusModalDustpay(status) {
+            const statusElement = document.getElementById('statusBadgeDustpay');
+            if (!statusElement) return;
+
+            const statusConfig = {
+                'PENDING': { texto: '⏳ Aguardando Pagamento', classe: 'pendente' },
+                'COMPLETED': { texto: '✅ Pago', classe: 'pago' },
+                'FAILED': { texto: '❌ Falhou', classe: 'pendente' },
+                'CANCELED': { texto: '❌ Cancelado', classe: 'pendente' }
             };
 
-            // Adiciona webhook se configurado
-            if (WEBHOOK_URL_PUSHIN) {
-                body.webhook_url = WEBHOOK_URL_PUSHIN;
-            }
-
-            // Faz a requisição para a API
-            const response = await fetch(API_URL_PUSHIN, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${PUSHINPAY_TOKEN}`,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
-
-            const data = await response.json();
-
-            if (response.ok && data.id) {
-                pagamentoAtualPushin = data;
-                mostrarQRCodePixPushin(data, descricao);
-                iniciarVerificacaoPagamentoPushin(data.id);
-            } else {
-                throw new Error(data.message || 'Erro ao gerar PIX');
-            }
-
-        } catch (error) {
-            console.error('Erro:', error);
-            conteudo.innerHTML = `
-                <h2 style="color: #e74c3c;">❌ Erro ao gerar PIX</h2>
-                <p style="color: #6c757d; margin: 20px 0;">
-                    ${error.message || 'Não foi possível gerar o código PIX. Tente novamente.'}
-                </p>
-                <button class="btn-copiar-pix-pushin" onclick="fecharModalPixPushin()">
-                    Fechar
-                </button>
-            `;
-            mostrarToastPushin('Erro ao gerar PIX. Tente novamente.', 'error');
-        }
-    }
-
-    // Função para mostrar o QR Code
-    function mostrarQRCodePixPushin(dados, descricao) {
-        const conteudo = document.getElementById('conteudoPixModalPushin');
-        const valorReais = (dados.value / 100).toFixed(2).replace('.', ',');
-
-        conteudo.innerHTML = `
-            <h2>Pagamento PIX</h2>
-            <p style="color: #6c757d; margin: 10px 0; font-size: 15px;">${descricao}</p>
-            <div class="valor-pix-pushin">R$ ${valorReais}</div>
-            <span class="status-pix-pushin pendente">Aguardando Pagamento</span>
-            
-            <div class="qr-code-box-pushin">
-                <img src="${dados.qr_code_base64}" alt="QR Code PIX">
-            </div>
-
-            <div class="instrucoes-pix-pushin">
-                <h3>📱 Como pagar:</h3>
-                <ol>
-                    <li>Abra o app do seu banco</li>
-                    <li>Escolha pagar com PIX</li>
-                    <li>Escaneie o QR Code acima</li>
-                    <li>Confirme o pagamento</li>
-                </ol>
-            </div>
-
-            <div class="codigo-pix-container-pushin">
-                <label class="codigo-pix-label-pushin">Ou copie o código PIX:</label>
-                <div class="codigo-pix-box-pushin" id="codigoPixTextoPushin">${dados.qr_code}</div>
-            </div>
-
-            <button class="btn-copiar-pix-pushin" onclick="copiarCodigoPixPushin()">
-                 Copiar Código PIX
-            </button>
-
-            <button class="btn-verificar-pix-pushin" id="btnVerificarManualPushin" onclick="verificarPagamentoManualPushin()">
-                Já Paguei - Verificar Status
-            </button>
-
-            <div class="aviso-tempo-pushin">
-                ⏱️ O pagamento é confirmado automaticamente após a aprovação
-            </div>
-        `;
-    }
-
-    // Função para copiar o código PIX
-    function copiarCodigoPixPushin() {
-        if (!pagamentoAtualPushin) return;
-
-        navigator.clipboard.writeText(pagamentoAtualPushin.qr_code).then(() => {
-            mostrarToastPushin('✅ Código PIX copiado!');
-        }).catch(() => {
-            // Fallback
-            const textarea = document.createElement('textarea');
-            textarea.value = pagamentoAtualPushin.qr_code;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            
-            try {
-                document.execCommand('copy');
-                mostrarToastPushin('✅ Código PIX copiado!');
-            } catch (err) {
-                mostrarToastPushin('❌ Erro ao copiar', 'error');
-            }
-            
-            document.body.removeChild(textarea);
-        });
-    }
-
-    // Inicia verificação automática
-    function iniciarVerificacaoPagamentoPushin(transactionId) {
-        intervaloVerificacaoPushin = setInterval(async () => {
-            await consultarStatusPagamentoPushin(transactionId);
-        }, 60000); // 60 segundos
-    }
-
-    // Consulta status do pagamento
-    async function consultarStatusPagamentoPushin(transactionId) {
-        const agora = Date.now();
-        
-        if (agora - ultimaConsultaPushin < 60000) {
-            console.log('Aguardando 1 minuto para próxima consulta...');
-            return;
+            const config = statusConfig[status] || statusConfig['PENDING'];
+            statusElement.textContent = config.texto;
+            statusElement.className = `status-pix-dustpay ${config.classe}`;
         }
 
-        try {
-            ultimaConsultaPushin = agora;
+        // Verificação manual
+        async function verificarPagamentoManualDustpay() {
+            if (!pagamentoAtualDustpay) return;
 
-            const response = await fetch(`${API_BASE_URL_PUSHIN}/${transactionId}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${PUSHINPAY_TOKEN}`,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
+            const btn = document.getElementById('btnVerificarManualDustpay');
+            if (!btn) return;
 
-            if (response.status === 404) {
-                console.log('Transação não encontrada');
+            const textoOriginal = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '🔄 Verificando...';
+
+            const agora = Date.now();
+            const tempoDecorrido = (agora - ultimaConsultaDustpay) / 1000;
+
+            if (tempoDecorrido < 60 && ultimaConsultaDustpay > 0) {
+                const segundosRestantes = Math.ceil(60 - tempoDecorrido);
+                mostrarToastDustpay(`⏱️ Aguarde ${segundosRestantes}s`, 'error');
+                btn.disabled = false;
+                btn.innerHTML = textoOriginal;
                 return;
             }
 
-            if (response.ok) {
-                const data = await response.json();
-                
-                if (data.status === 'paid') {
-                    pagamentoAprovadoPushin(data);
-                } else if (data.status === 'expired') {
-                    pagamentoExpiradoPushin();
-                } else {
-                    console.log(`Status atual: ${data.status}`);
-                    atualizarStatusModalPushin(data.status);
-                }
+            ultimaConsultaDustpay = agora;
+            await consultarStatusPagamentoDustpay(pagamentoAtualDustpay.transactionId);
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = textoOriginal;
+            }, 2000);
+        }
+
+        // Pagamento aprovado
+        function pagamentoAprovadoDustpay(dados) {
+            if (intervaloVerificacaoDustpay) {
+                clearInterval(intervaloVerificacaoDustpay);
             }
 
-        } catch (error) {
-            console.error('Erro ao consultar pagamento:', error);
+            const valorReais = dados.amount ? dados.amount.toFixed(2).replace('.', ',') : '0,00';
+            const conteudo = document.getElementById('conteudoPixModalDustpay');
+            
+            conteudo.innerHTML = `
+                <div style="padding: 30px 0;">
+                    <div style="font-size: 70px; margin-bottom: 15px; text-align: center;">✅</div>
+                    <h2 style="color: #27ae60; margin-bottom: 10px;">Pagamento Confirmado!</h2>
+                    <p style="color: #6c757d; margin: 15px 0; font-size: 16px; text-align: center;">
+                        <strong>R$ ${valorReais}</strong>
+                    </p>
+                    <p style="color: #6c757d; margin: 15px 0; font-size: 14px; text-align: center;">
+                        Seu pagamento foi aprovado com sucesso!<br>
+                        Clique no botão abaixo para acessar o conteúdo exclusivo.
+                    </p>
+
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                        <p style="color: #2e7d32; font-size: 13px; margin: 0; text-align: center;">
+                            🔒 <strong>Acesso Liberado!</strong><br>
+                            Seu conteúdo exclusivo está disponível.
+                        </p>
+                    </div>
+
+                    <a href="${DUSTPAY_CONFIG.driveLink}" target="_blank" style="text-decoration: none;">
+                        <button class="btn-copiar-pix-dustpay" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%); box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);">
+                            🎁 Acessar Conteúdo Agora
+                        </button>
+                    </a>
+
+                    <button class="btn-verificar-pix-dustpay" onclick="copiarLinkDriveDustpay('${DUSTPAY_CONFIG.driveLink}')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        📋 Copiar Link
+                    </button>
+
+                    <button class="btn-verificar-pix-dustpay" onclick="fecharModalPixDustpay()" style="background: #95a5a6; margin-top: 10px;">
+                        Fechar
+                    </button>
+
+                    <div class="aviso-tempo-dustpay" style="margin-top: 15px;">
+                        💡 Salve o link em seus favoritos para acessar quando quiser!
+                    </div>
+                </div>
+            `;
+
+            mostrarToastDustpay('✅ Pagamento aprovado! Acesse seu conteúdo.');
         }
-    }
 
-    // Atualiza status no modal
-    function atualizarStatusModalPushin(status) {
-        const statusElement = document.querySelector('.status-pix-pushin');
-        if (!statusElement) return;
-
-        const statusConfig = {
-            'created': { texto: '⏳ Aguardando Pagamento', classe: 'pendente' },
-            'pending': { texto: '⏳ Processando...', classe: 'pendente' },
-            'paid': { texto: '✅ Pago', classe: 'pago' },
-            'expired': { texto: '❌ Expirado', classe: 'pendente' }
-        };
-
-        const config = statusConfig[status] || statusConfig['created'];
-        statusElement.textContent = config.texto;
-        statusElement.className = `status-pix-pushin ${config.classe}`;
-    }
-
-    // Verificação manual
-    async function verificarPagamentoManualPushin() {
-        if (!pagamentoAtualPushin) return;
-
-        const btn = document.getElementById('btnVerificarManualPushin');
-        if (!btn) return;
-
-        const textoOriginal = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = '🔄 Verificando...';
-
-        const agora = Date.now();
-        const tempoDecorrido = (agora - ultimaConsultaPushin) / 1000;
-
-        if (tempoDecorrido < 60 && ultimaConsultaPushin > 0) {
-            const segundosRestantes = Math.ceil(60 - tempoDecorrido);
-            mostrarToastPushin(`⏱️ Aguarde ${segundosRestantes}s`, 'error');
-            btn.disabled = false;
-            btn.innerHTML = textoOriginal;
-            return;
+        // Função para copiar o link do Drive
+        function copiarLinkDriveDustpay(link) {
+            navigator.clipboard.writeText(link).then(() => {
+                mostrarToastDustpay('✅ Link copiado! Cole no navegador para acessar.');
+            }).catch(() => {
+                const textarea = document.createElement('textarea');
+                textarea.value = link;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    mostrarToastDustpay('✅ Link copiado!');
+                } catch (err) {
+                    mostrarToastDustpay('❌ Erro ao copiar', 'error');
+                }
+                
+                document.body.removeChild(textarea);
+            });
         }
 
-        await consultarStatusPagamentoPushin(pagamentoAtualPushin.id);
+        // Pagamento expirado
+        function pagamentoExpiradoDustpay(status) {
+            if (intervaloVerificacaoDustpay) {
+                clearInterval(intervaloVerificacaoDustpay);
+            }
 
-        setTimeout(() => {
-            btn.disabled = false;
-            btn.innerHTML = textoOriginal;
-        }, 2000);
-    }
+            const statusText = status === 'CANCELED' ? 'Cancelado' : 'Expirado';
+            const conteudo = document.getElementById('conteudoPixModalDustpay');
+            
+            conteudo.innerHTML = `
+                <div style="padding: 40px 0;">
+                    <div style="font-size: 80px; margin-bottom: 20px; text-align: center;">⏰</div>
+                    <h2 style="color: #e74c3c; text-align: center;">Pagamento ${statusText}</h2>
+                    <p style="color: #6c757d; margin: 20px 0; text-align: center;">
+                        O pagamento não foi concluído. Tente novamente.
+                    </p>
+                    <button class="btn-copiar-pix-dustpay" onclick="fecharModalPixDustpay()">
+                        Fechar
+                    </button>
+                </div>
+            `;
 
-    // Pagamento aprovado
-// Pagamento aprovado - ATUALIZADO COM LINK DO DRIVE
-function pagamentoAprovadoPushin(dados) {
-    if (intervaloVerificacaoPushin) {
-        clearInterval(intervaloVerificacaoPushin);
-    }
+            mostrarToastDustpay(`⏰ Pagamento ${statusText.toLowerCase()}`, 'error');
+        }
 
-    const valorReais = dados ? (dados.value / 100).toFixed(2).replace('.', ',') : '0,00';
-    const conteudo = document.getElementById('conteudoPixModalPushin');
-    
-    // Link do Google Drive
-    const linkDrive = 'https://drive.google.com/drive/folders/1M5toLuYb9JKXOnh3cz_zodyJwif57lLS';
-    
-    conteudo.innerHTML = `
-        <div style="padding: 30px 0;">
-            <div style="font-size: 70px; margin-bottom: 15px;">✅</div>
-            <h2 style="color: #27ae60; margin-bottom: 10px;">Pagamento Confirmado!</h2>
-            <p style="color: #6c757d; margin: 15px 0; font-size: 16px;">
-                <strong>R$ ${valorReais}</strong>
-            </p>
-            <p style="color: #6c757d; margin: 15px 0; font-size: 14px;">
-                Seu pagamento foi aprovado com sucesso!<br>
-                Clique no botão abaixo para acessar o conteúdo exclusivo.
-            </p>
+        // Fechar modal
+        function fecharModalPixDustpay() {
+            const modal = document.getElementById('modalPixDustpay');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            if (intervaloVerificacaoDustpay) {
+                clearInterval(intervaloVerificacaoDustpay);
+            }
+            
+            pagamentoAtualDustpay = null;
+        }
 
-            <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; margin: 20px 0;">
-                <p style="color: #2e7d32; font-size: 13px; margin: 0;">
-                    🔒 <strong>Acesso Liberado!</strong><br>
-                    Seu conteúdo exclusivo está disponível.
-                </p>
-            </div>
+        // Mostrar toast
+        function mostrarToastDustpay(mensagem, tipo = 'success') {
+            const toast = document.getElementById('toastMessageDustpay');
+            toast.textContent = mensagem;
+            toast.className = `toast-message-dustpay ${tipo}`;
+            toast.classList.add('show');
 
-            <a href="${linkDrive}" target="_blank" style="text-decoration: none;">
-                <button class="btn-copiar-pix-pushin" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%); box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);">
-                    🎁 Acessar Conteúdo Agora
-                </button>
-            </a>
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
 
-            <button class="btn-verificar-pix-pushin" onclick="copiarLinkDrive('${linkDrive}')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                📋 Copiar Link
-            </button>
+        // Fecha ao clicar fora
+        document.getElementById('modalPixDustpay').addEventListener('click', (e) => {
+            if (e.target.id === 'modalPixDustpay') {
+                fecharModalPixDustpay();
+            }
+        });
 
-            <button class="btn-verificar-pix-pushin" onclick="fecharModalPixPushin()" style="background: #95a5a6; margin-top: 10px;">
-                Fechar
-            </button>
+        // Fecha com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('modalPixDustpay').classList.contains('active')) {
+                fecharModalPixDustpay();
+            }
+        });
 
-            <div class="aviso-tempo-pushin" style="margin-top: 15px;">
-                💡 Salve o link em seus favoritos para acessar quando quiser!
-            </div>
-        </div>
-    `;
-
-    mostrarToastPushin('✅ Pagamento aprovado! Acesse seu conteúdo.');
-}
-
-// Função para copiar o link do Drive
-function copiarLinkDrive(link) {
-    navigator.clipboard.writeText(link).then(() => {
-        mostrarToastPushin('✅ Link copiado! Cole no navegador para acessar.');
-    }).catch(() => {
-        // Fallback para navegadores antigos
-        const textarea = document.createElement('textarea');
-        textarea.value = link;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
+        // ========================================
+        // FUNÇÕES PARA SEUS BOTÕES:
+        // ========================================
         
-        try {
-            document.execCommand('copy');
-            mostrarToastPushin('✅ Link copiado!');
-        } catch (err) {
-            mostrarToastPushin('❌ Erro ao copiar', 'error');
-        }
-        
-        document.body.removeChild(textarea);
-    });
-}
-
-    // Pagamento expirado
-    function pagamentoExpiradoPushin() {
-        if (intervaloVerificacaoPushin) {
-            clearInterval(intervaloVerificacaoPushin);
+        function redirecionar1() {
+            criarPagamentoPixDustpay(24.90, 'Assinar (30 dias)');
         }
 
-        const conteudo = document.getElementById('conteudoPixModalPushin');
-        conteudo.innerHTML = `
-            <div style="padding: 40px 0;">
-                <div style="font-size: 80px; margin-bottom: 20px;">⏰</div>
-                <h2 style="color: #e74c3c;">Pagamento Expirado</h2>
-                <p style="color: #6c757d; margin: 20px 0;">
-                    O tempo expirou. Gere um novo código PIX.
-                </p>
-                <button class="btn-copiar-pix-pushin" onclick="fecharModalPixPushin()">
-                    Fechar
-                </button>
-            </div>
-        `;
-
-        mostrarToastPushin('⏰ Pagamento expirado', 'error');
-    }
-
-    // Fechar modal
-    function fecharModalPixPushin() {
-        const modal = document.getElementById('modalPixPushin');
-        modal.classList.remove('active');
-        document.body.style.overflow = ''; // Libera scroll
-        
-        if (intervaloVerificacaoPushin) {
-            clearInterval(intervaloVerificacaoPushin);
+        function redirecionar2() {
+            criarPagamentoPixDustpay(39.90, 'Assinar (60 dias)');
         }
-        
-        pagamentoAtualPushin = null;
-    }
 
-    // Mostrar toast
-    function mostrarToastPushin(mensagem, tipo = 'success') {
-        const toast = document.getElementById('toastMessagePushin');
-        toast.textContent = mensagem;
-        toast.className = `toast-message-pushin ${tipo}`;
-        toast.classList.add('show');
-
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
-    }
-
-    // Fecha ao clicar fora
-    document.getElementById('modalPixPushin').addEventListener('click', (e) => {
-        if (e.target.id === 'modalPixPushin') {
-            fecharModalPixPushin();
+        function redirecionar3() {
+            criarPagamentoPixDustpay(59.90, 'Assinar (90 dias)');
         }
-    });
 
-    // Fecha com ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.getElementById('modalPixPushin').classList.contains('active')) {
-            fecharModalPixPushin();
-        }
-    });
-
-    // ========================================
-    // SUBSTITUI SUAS FUNÇÕES ANTIGAS:
-    // ========================================
-    
-    function redirecionar1() {
-        criarPagamentoPixPushin(24.90, 'Assinar (30 dias)');
-    }
-
-    function redirecionar2() {
-        criarPagamentoPixPushin(39.90, 'Assinar (60 dias)');
-    }
-
-    function redirecionar3() {
-        criarPagamentoPixPushin(59.90, 'Assinar (90 dias)');
-    }
-</script>
-			 
-		 </body>
-<!-- Mirrored from digitalwebofc.shop/kamilinhapriv/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Mar 2025 13:03:03 GMT -->
+        // Verifica configuração ao carregar
+        window.addEventListener('load', () => {
+            if (DUSTPAY_CONFIG.publicKey === 'SUA_CHAVE_PUBLICA_AQUI' || 
+                DUSTPAY_CONFIG.secretKey === 'SUA_CHAVE_SECRETA_AQUI') {
+                console.error('⚠️ ATENÇÃO: Configure suas chaves da Dust Pay no início do script!');
+            }
+        });
+    </script>
+</body>
 </html>
