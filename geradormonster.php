@@ -1,7 +1,7 @@
 <?php
 // =================== CONFIGURAÇÕES ===================
-$offer_hash    = 'CODIGODOCHECKOUT'; 
-$product_hash  = 'CODIGODOPRODUTO';
+$offer_hash    = 'sk_a78b1092d78ffc24dbf3c572c2b6f6589f09eed06cca7ff70288751cddb0d68e'; 
+$product_hash  = 'prod_1f3074c8bcc56820';
 $access_token  = 'SEUCODIGOAPI';
 $api_url       = 'https://api.paradisepagbr.com/api/public/v1/transactions?api_token=' . $access_token;
 $postback_url  = '/webhook/pix_webhook.php';
